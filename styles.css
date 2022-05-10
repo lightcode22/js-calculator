@@ -1,0 +1,125 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(-45deg, #dd6d88, #b76695, #8b6396, #615d89);
+  background-size: 400% 400%;
+  animation: gradient 20s ease infinite;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.calculator {
+  border-radius: 16px;
+  border-left: 1px solid rgba(255, 255, 255, 0.5);
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  width: 320px;
+  overflow: hidden;
+  font-family: monospace;
+}
+
+.display {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  height: 120px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.3);
+  padding: 1.5rem;
+}
+
+.previous-line {
+  font-size: 0.75rem;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  text-align: right;
+  color: white;
+}
+
+.current-line {
+  font-family: monospace;
+  border: none;
+  width: 100%;
+  line-height: 2rem;
+  color: white;
+  text-align: right;
+  background: transparent;
+}
+
+.controls {
+  padding: 1.5rem 1rem 1rem 1rem;
+  height: 280px;
+  background: rgba(255, 255, 255, 0.4);
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.125rem;
+  grid-auto-rows: 1fr;
+  width: 100%;
+}
+
+.controls__button {
+  border: none;
+  background: rgba(255, 255, 255, 0.3);
+
+  font-family: monospace;
+  font-size: 1.125rem;
+  color: white;
+}
+
+.scientific {
+  margin-bottom: 8px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* чтобы svg внутри кнопки не был event.target */
+svg {
+  pointer-events: none;
+}
+
+.operator {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.controls__button:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.controls__button:active {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.error-screen {
+  position: absolute;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  text-align: center;
+  color: white;
+  font-family: monospace;
+  font-size: 2.5rem;
+  line-height: 4rem;
+}

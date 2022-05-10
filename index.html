@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>calculator</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script defer type="text/javascript" src="index.js"></script>
+    <script defer type="text/javascript" src="utils.js"></script>
+  </head>
+  <body>
+    <form class="calculator">
+      <div class="display">
+        <div class="previous-line"></div>
+        <input class="current-line" disabled value="" />
+      </div>
+      <div class="controls">
+        <button type="button" class="controls__button scientific" value="√">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            version="1.1"
+            id="mdi-square-root"
+            width="20"
+            height="20"
+            viewBox="0 0 24 20"
+            fill="#fff"
+          >
+            <path
+              d="M11.76,16.83L14.59,14L11.76,11.17L13.17,9.76L16,12.59L18.83,9.76L20.24,11.17L17.41,14L20.24,16.83L18.83,18.24L16,15.41L13.17,18.24L11.76,16.83M2,11H5V11H5L7.29,16.4L10,6H22V8H11.55L8.68,19H6.22L3.68,13H2V11Z"
+            />
+          </svg>
+        </button>
+        <button type="button" class="controls__button scientific" value="^">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            version="1.1"
+            id="mdi-exponent"
+            width="18"
+            height="18"
+            viewBox="0 0 22 20"
+            fill="#fff"
+          >
+            <path
+              d="M15.38,3L17.77,8.75C17.55,9.68 17.27,10.32 17,10.7C16.67,11.18 16.44,11.25 16.19,11.25V12.75C16.94,12.75 17.74,12.35 18.24,11.56C19.87,8.94 22,3 22,3H20.38L18.69,7.05L17,3H15.38M3.42,8.59L2,10L6.79,14.79L2,19.59L3.41,21L8.21,16.21L13,21L14.41,19.59L9.62,14.79L14.41,10L13,8.59L8.21,13.38L3.41,8.59H3.42Z"
+            />
+          </svg>
+        </button>
+        <button type="button" class="controls__button scientific" value="sin">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            version="1.1"
+            id="mdi-math-sin"
+            width="18"
+            height="18"
+            viewBox="0 0 24 20"
+            fill="#fff"
+          >
+            <path
+              d="M4,7A2,2 0 0,0 2,9V11A2,2 0 0,0 4,13H6V15H2V17H6A2,2 0 0,0 8,15V13A2,2 0 0,0 6,11H4V9H8V7H4M14,7V9H13V15H14V17H10V15H11V9H10V7H14M16,7V17H18V12L20,17H22V7H20V12L18,7H16Z"
+            />
+          </svg>
+        </button>
+        <button type="button" class="controls__button scientific" value="cos">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            version="1.1"
+            id="mdi-math-cos"
+            width="18"
+            height="18"
+            viewBox="0 0 24 20"
+            fill="#fff"
+          >
+            <path
+              d="M4,7A2,2 0 0,0 2,9V15A2,2 0 0,0 4,17H6A2,2 0 0,0 8,15V14H6V15H4V9H6V10H8V9A2,2 0 0,0 6,7H4M11,7A2,2 0 0,0 9,9V15A2,2 0 0,0 11,17H13A2,2 0 0,0 15,15V9A2,2 0 0,0 13,7H11M11,9H13V15H11V9M18,7A2,2 0 0,0 16,9V11A2,2 0 0,0 18,13H20V15H16V17H20A2,2 0 0,0 22,15V13A2,2 0 0,0 20,11H18V9H22V7H18Z"
+            />
+          </svg>
+        </button>
+        <button type="button" class="controls__button scientific" value="tan">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            version="1.1"
+            id="mdi-math-tan"
+            width="18"
+            height="18"
+            viewBox="0 0 24 20"
+            fill="#fff"
+          >
+            <path
+              d="M2,7V9H4V17H6V9H8V7H2M11,7A2,2 0 0,0 9,9V17H11V13H13V17H15V9A2,2 0 0,0 13,7H11M11,9H13V11H11V9M16,7V17H18V12L20,17H22V7H20V12L18,7H16Z"
+            />
+          </svg>
+        </button>
+        <button type="button" class="controls__button" value="7">7</button>
+        <button type="button" class="controls__button" value="8">8</button>
+        <button type="button" class="controls__button" value="9">9</button>
+        <button type="button" class="controls__button operator" value="%">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            version="1.1"
+            id="mdi-percent"
+            width="16"
+            height="16"
+            viewBox="0 0 24 20"
+            fill="#ffffff"
+          >
+            <path
+              d="M18.5,3.5L3.5,18.5L5.5,20.5L20.5,5.5M7,4A3,3 0 0,0 4,7A3,3 0 0,0 7,10A3,3 0 0,0 10,7A3,3 0 0,0 7,4M17,14A3,3 0 0,0 14,17A3,3 0 0,0 17,20A3,3 0 0,0 20,17A3,3 0 0,0 17,14Z"
+            />
+          </svg>
+        </button>
+        <button type="button" class="controls__button operator" value="CE">
+          CE
+        </button>
+        <button type="button" class="controls__button" value="4">4</button>
+        <button type="button" class="controls__button" value="5">5</button>
+        <button type="button" class="controls__button" value="6">6</button>
+        <button type="button" class="controls__button operator" value="-">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            version="1.1"
+            id="mdi-minus"
+            width="16"
+            height="16"
+            viewBox="0 0 24 20"
+            fill="#ffffff"
+          >
+            <path d="M19,13H5V11H19V13Z" />
+          </svg>
+        </button>
+        <button type="button" class="controls__button operator" value="/">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            version="1.1"
+            id="mdi-division"
+            width="18"
+            height="18"
+            viewBox="0 0 24 18"
+            fill="#ffffff"
+          >
+            <path
+              d="M19,13H5V11H19V13M12,5A2,2 0 0,1 14,7A2,2 0 0,1 12,9A2,2 0 0,1 10,7A2,2 0 0,1 12,5M12,15A2,2 0 0,1 14,17A2,2 0 0,1 12,19A2,2 0 0,1 10,17A2,2 0 0,1 12,15Z"
+            />
+          </svg>
+        </button>
+        <button type="button" class="controls__button" value="1">1</button>
+        <button type="button" class="controls__button" value="2">2</button>
+        <button type="button" class="controls__button" value="3">3</button>
+        <button type="button" class="controls__button operator" value="+">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            version="1.1"
+            id="mdi-plus"
+            width="20"
+            height="20"
+            viewBox="0 0 24 20"
+            fill="#ffffff"
+          >
+            <path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" />
+          </svg>
+        </button>
+        <button type="button" class="controls__button operator" value="*">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            version="1.1"
+            id="mdi-close"
+            width="18"
+            height="18"
+            viewBox="0 0 24 18"
+            fill="#ffffff"
+          >
+            <path
+              d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"
+            />
+          </svg>
+        </button>
+        <button type="button" class="controls__button operator" value="invert">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            version="1.1"
+            id="mdi-plus-minus-variant"
+            width="20"
+            height="20"
+            viewBox="0 0 24 20"
+            fill="#ffffff"
+          >
+            <path
+              d="M3 7H6V4H8V7H11V9H8V12H6V9H3V7M13 15H21V17H13V15M16.04 3H18.35L7.96 21H5.65L16.04 3Z"
+            />
+          </svg>
+        </button>
+        <button type="button" class="controls__button" value="0">0</button>
+        <button type="button" class="controls__button" value=".">.</button>
+        <button type="submit" class="controls__button operator">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            version="1.1"
+            id="mdi-equal"
+            width="16"
+            height="16"
+            viewBox="0 0 24 20"
+            fill="#ffffff"
+          >
+            <path d="M19,10H5V8H19V10M19,16H5V14H19V16Z" />
+          </svg>
+        </button>
+        <button
+          type="button"
+          class="controls__button operator"
+          value="Backspace"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            version="1.1"
+            id="mdi-backspace-outline"
+            width="16"
+            height="16"
+            viewBox="0 0 24 18"
+            fill="#ffffff"
+          >
+            <path
+              d="M19,15.59L17.59,17L14,13.41L10.41,17L9,15.59L12.59,12L9,8.41L10.41,7L14,10.59L17.59,7L19,8.41L15.41,12L19,15.59M22,3A2,2 0 0,1 24,5V19A2,2 0 0,1 22,21H7C6.31,21 5.77,20.64 5.41,20.11L0,12L5.41,3.88C5.77,3.35 6.31,3 7,3H22M22,5H7L2.28,12L7,19H22V5Z"
+            />
+          </svg>
+        </button>
+      </div>
+    </form>
+    <div class="error-screen">
+      (&#8745;&#65344;-&acute; )&#8835;&#9473;&#9734;&#65439;.*&#65381;
+      &#65377;&#65439; &#1074;&#1078;&#1091;&#1093;! &#1080; &#1090;&#1099;
+      &#1080;&#1089;&#1087;&#1086;&#1088;&#1090;&#1080;&#1083;
+      &#1082;&#1072;&#1083;&#1100;&#1082;&#1091;&#1083;&#1103;&#1090;&#1086;&#1088;
+    </div>
+  </body>
+</html>
