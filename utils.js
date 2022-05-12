@@ -32,7 +32,6 @@ function validateSymbol(symbol) {
   // Знак = не является бинарным оператором и эквивалентен Enter
   if (symbol === "Enter" || symbol === "=") {
     calculator.requestSubmit();
-    adjustFontSize();
     return false;
   }
 
@@ -82,41 +81,10 @@ function validateSymbol(symbol) {
   // В математике sin(90) = 1, но Math.sin(90) = 0.8939966636005579
   // поэтому для более точного результата используется формула Бхаскара
   if (symbol === "sin" || symbol === "cos" || symbol === "tan") {
-    let [operand1, operator, operand2] = currentLine.value.split(" ");
-
-    operand1 = operand1 === "." ? 0 : Number(operand1);
-
-    let isCalculated = false;
-    let calculatedValue;
-
-    if (operand2) {
-      operand2 = operand2 === "." ? 0 : Number(operand2);
-      calculatedValue = mathOperators[symbol](operand2);
-      // если sin, cos или tan были вторым оператором в строке, то
-      // сначала вычисляется значение тригонометрической функции, а затем
-      // это результат используется для расчета всего выражения
-      calculatedValue = mathOperators[operator](operand1, calculatedValue);
-      isCalculated = true;
-    }
-
-    if (!isCalculated && operand1) {
-      calculatedValue = mathOperators[symbol](operand1);
-      isCalculated = true;
-    }
-
-    if (isCalculated) {
-      if (typeof operand2 !== "undefined" && operand2 !== "") {
-        previousLine.innerText =
-          [operand1, operator, `${symbol}(${operand2})`].join(" ") + " =";
-      } else {
-        previousLine.innerText = `${symbol}(${operand1}) =`;
-      }
-
-      currentLine.value = calculatedValue;
-      adjustFontSize();
-    }
+    handleTrigFunction(symbol);
     return false;
   }
+  // = = = = = = = = = = = = = = end of sinus cosinus
 
   const isKeyAllowed = /^[\d-+√*^%\/.]$/.test(symbol);
 
@@ -178,6 +146,42 @@ function calculatePercentage(num) {
     return mathOperators["%"](operand1, operand2);
   }
   return null;
+}
+
+function handleTrigFunction(symbol) {
+  let [operand1, operator, operand2] = currentLine.value.split(" ");
+
+  operand1 = operand1 === "." ? 0 : Number(operand1);
+
+  let isCalculated = false;
+  let calculatedValue;
+
+  if (operand2) {
+    operand2 = operand2 === "." ? 0 : Number(operand2);
+    calculatedValue = mathOperators[symbol](operand2);
+    // если sin, cos или tan были вторым оператором в строке, то
+    // сначала вычисляется значение тригонометрической функции, а затем
+    // это результат используется для расчета всего выражения
+    calculatedValue = mathOperators[operator](operand1, calculatedValue);
+    isCalculated = true;
+  }
+
+  if (!isCalculated && operand1) {
+    calculatedValue = mathOperators[symbol](operand1);
+    isCalculated = true;
+  }
+
+  if (isCalculated) {
+    if (typeof operand2 !== "undefined" && operand2 !== "") {
+      previousLine.innerText =
+        [operand1, operator, `${symbol}(${operand2})`].join(" ") + " =";
+    } else {
+      previousLine.innerText = `${symbol}(${operand1}) =`;
+    }
+
+    currentLine.value = calculatedValue;
+    adjustFontSize();
+  }
 }
 
 function calculateSinFunc() {
