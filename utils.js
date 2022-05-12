@@ -17,13 +17,9 @@ const mathOperators = {
     }
     return Number(Math.pow(a, 1 / b).toFixed(8));
   },
-  sin: calculateSinFunc(),
-  cos: function (x) {
-    return this.sin(90 - x);
-  },
-  tan: function (x) {
-    return this["/"](this.sin(x), this.cos(x));
-  },
+  sin: (x) => Math.sin(x),
+  cos: (x) => Math.cos(x),
+  tan: (x) => Math.tan(x),
 };
 
 function validateSymbol(symbol) {
@@ -77,8 +73,9 @@ function validateSymbol(symbol) {
     return false;
   }
 
-  // встроенные методы Math sin(), cos() и tan() работают с радианами
-  // поэтому для более точного результата и для удобства использования применяется формула Бхаскара
+  // встроенные методы Math sin(), cos() и tan() ужасно неточные.
+  // В математике sin(90) = 1, но Math.sin(90) = 0.8939966636005579
+  // поэтому для более точного результата используется формула Бхаскара
   if (symbol === "sin" || symbol === "cos" || symbol === "tan") {
     handleTrigFunction(symbol);
     return false;
@@ -155,54 +152,33 @@ function handleTrigFunction(symbol) {
   let isCalculated = false;
   let calculatedValue;
 
-  if (operand2) {
+  console.log(operand1, operand2);
+
+  if (typeof operand2 !== undefined) {
     operand2 = operand2 === "." ? 0 : Number(operand2);
-    calculatedValue = mathOperators[symbol](operand2);
+
+    // конвертация из градусов в радианы
+    let radians = (operand2 * Math.PI) / 180;
+
+    calculatedValue = Number(mathOperators[symbol](radians).toFixed(8));
     // если sin, cos или tan были вторым оператором в строке, то
     // сначала вычисляется значение тригонометрической функции, а затем
     // это результат используется для расчета всего выражения
     calculatedValue = mathOperators[operator](operand1, calculatedValue);
+    previousLine.innerText =
+      [operand1, operator, `${symbol}(${operand2})`].join(" ") + " =";
     isCalculated = true;
   }
 
-  if (!isCalculated && operand1) {
-    calculatedValue = mathOperators[symbol](operand1);
+  if (!isCalculated && typeof operand1 !== undefined) {
+    let radians = (operand1 * Math.PI) / 180;
+    calculatedValue = Number(mathOperators[symbol](radians).toFixed(8));
+    previousLine.innerText = `${symbol}(${operand1}) =`;
     isCalculated = true;
   }
 
   if (isCalculated) {
-    if (typeof operand2 !== "undefined" && operand2 !== "") {
-      previousLine.innerText =
-        [operand1, operator, `${symbol}(${operand2})`].join(" ") + " =";
-    } else {
-      previousLine.innerText = `${symbol}(${operand1}) =`;
-    }
-
     currentLine.value = calculatedValue;
     adjustFontSize();
   }
-}
-
-function calculateSinFunc() {
-  return (x) => {
-    let modifier = 1;
-
-    // sin(-x) = -sin(x)
-    if (x < 0) {
-      x *= -1;
-      modifier *= -1;
-    }
-    if (x >= 360) {
-      x %= 360;
-    }
-    // если  180 < угол < 360, то результат инвертируется
-    if (x >= 180) {
-      x %= 180;
-      modifier *= -1;
-    }
-    // формула Бхаскара => 4 * x * (180 - x) / (40500 - x * (180 - x))
-    return Number(
-      modifier * ((4 * x * (180 - x)) / (40500 - x * (180 - x))).toFixed(8)
-    );
-  };
 }
