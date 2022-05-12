@@ -69,7 +69,7 @@ function validateSymbol(symbol) {
   if (symbol === "%") {
     let calculated = calculatePercentage();
 
-    if (calculated !== null) {
+    if (calculated !== undefined) {
       previousLine.innerText = currentLine.value + "% =";
       currentLine.value = calculated;
       adjustFontSize();
@@ -84,6 +84,7 @@ function validateSymbol(symbol) {
     handleTrigFunction(symbol);
     return false;
   }
+  // = = = = = = = = = = = = = = end of sinus cosinus
 
   const isKeyAllowed = /^[\d-+√*^%\/.]$/.test(symbol);
 
@@ -144,7 +145,7 @@ function calculatePercentage(num) {
     operand2 = operand2 === "." ? 0 : Number(operand2);
     return mathOperators["%"](operand1, operand2);
   }
-  return null;
+  return;
 }
 
 function handleTrigFunction(symbol) {
