@@ -84,7 +84,6 @@ function validateSymbol(symbol) {
     handleTrigFunction(symbol);
     return false;
   }
-  // = = = = = = = = = = = = = = end of sinus cosinus
 
   const isKeyAllowed = /^[\d-+√*^%\/.]$/.test(symbol);
 
