@@ -78,6 +78,22 @@ function useSymbol(symbol) {
         }
       }
     }
+
+    if (symbol === "0") {
+      let digitsOnly;
+      if (typeof operand2 === "undefined") {
+        digitsOnly = operand1.replace(/^d./g, "");
+        if (digitsOnly.length === 1 && digitsOnly === "0") {
+          return;
+        }
+      } else {
+        digitsOnly = operand2.replace(/^d./g, "");
+        if (digitsOnly.length === 1 && digitsOnly === "0") {
+          return;
+        }
+      }
+    }
+
     currentLine.value += symbol;
   }
 
