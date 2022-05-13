@@ -152,9 +152,7 @@ function handleTrigFunction(symbol) {
   let isCalculated = false;
   let calculatedValue;
 
-  console.log(operand1, operand2);
-
-  if (typeof operand2 !== undefined) {
+  if (typeof operand2 !== "undefined") {
     operand2 = operand2 === "." ? 0 : Number(operand2);
 
     // конвертация из градусов в радианы
@@ -170,7 +168,7 @@ function handleTrigFunction(symbol) {
     isCalculated = true;
   }
 
-  if (!isCalculated && typeof operand1 !== undefined) {
+  if (!isCalculated && typeof operand1 !== "undefined") {
     let radians = (operand1 * Math.PI) / 180;
     calculatedValue = Number(mathOperators[symbol](radians).toFixed(8));
     previousLine.innerText = `${symbol}(${operand1}) =`;
